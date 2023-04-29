@@ -1,12 +1,22 @@
 {
-  "name": "simplesessionjs",
+  "name": "simplesession",
   "version": "1.0.0",
-  "description": "Creating encrypted session just like in PHP using javascript",
+  "description": "A javscript librarie to create encrypted sessions just like PHP",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ambroiselebs/simplesession.js.git"
+  },
+  "keywords": [
+    "session"
+  ],
   "author": "ambroiselebs",
   "license": "ISC",
-  ""
+  "bugs": {
+    "url": "https://github.com/ambroiselebs/simplesession.js/issues"
+  },
+  "homepage": "https://github.com/ambroiselebs/simplesession.js#readme"
 }
