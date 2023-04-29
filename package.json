@@ -1,0 +1,12 @@
+{
+  "name": "simplesessionjs",
+  "version": "1.0.0",
+  "description": "Creating encrypted session just like in PHP using javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ambroiselebs",
+  "license": "ISC",
+  ""
+}
