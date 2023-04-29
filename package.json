@@ -1,6 +1,6 @@
 {
-  "name": "simplesession",
-  "version": "1.0.0",
+  "name": "@ambroiselebs/simplesession",
+  "version": "1.0.1",
   "description": "A javscript librarie to create encrypted sessions just like PHP",
   "main": "index.js",
   "scripts": {
