@@ -1,47 +1,35 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readSession = exports.setSession = void 0;
-// fonction pour encrypter un texte avec l'algorithme de César
+exports.checkSession = exports.readSession = exports.setSession = void 0;
+// Function to encrypt
 function encrypt(text, shift) {
     var encryptedText = "";
     for (var i = 0; i < text.length; i++) {
-        // récupérer le caractère courant
         var char = text[i];
-        // appliquer le décalage (shift) à chaque caractère alphabétique
         if (char.match(/[a-z]/i)) {
             var code = text.charCodeAt(i);
-            // si le caractère est en majuscule, on ajoute 65 pour le code ASCII, sinon on ajoute 97
             var baseCode = code < 91 ? 65 : 97;
-            // appliquer le décalage à l'index du caractère dans l'alphabet (0-25)
             var newIndex = (code - baseCode + shift) % 26;
-            // ajouter le nouveau caractère chiffré à la chaîne de texte chiffré
             encryptedText += String.fromCharCode(baseCode + newIndex);
         }
         else {
-            // si le caractère n'est pas alphabétique, on l'ajoute tel quel
             encryptedText += char;
         }
     }
     return encryptedText;
 }
-// fonction pour décrypter un texte chiffré avec l'algorithme de César
+// Function to decrypt
 function decrypt(encryptedText, shift) {
     var decryptedText = "";
     for (var i = 0; i < encryptedText.length; i++) {
-        // récupérer le caractère courant
         var char = encryptedText[i];
-        // appliquer le décalage inverse pour décrypter le texte
         if (char.match(/[a-z]/i)) {
             var code = encryptedText.charCodeAt(i);
-            // si le caractère est en majuscule, on ajoute 65 pour le code ASCII, sinon on ajoute 97
             var baseCode = code < 91 ? 65 : 97;
-            // appliquer le décalage inverse à l'index du caractère dans l'alphabet (0-25)
             var newIndex = (code - baseCode - shift + 26) % 26;
-            // ajouter le nouveau caractère déchiffré à la chaîne de texte déchiffré
             decryptedText += String.fromCharCode(baseCode + newIndex);
         }
         else {
-            // si le caractère n'est pas alphabétique, on l'ajoute tel quel
             decryptedText += char;
         }
     }
@@ -98,3 +86,16 @@ function readSession(key, value) {
     }
 }
 exports.readSession = readSession;
+function checkSession(key) {
+    if (document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1")) {
+        // The cookie exist
+        var encryptedDict = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+        var decryptedDict = decryptDictionary(encryptedDict, 11);
+        return decryptedDict[key] ? true : false;
+    }
+    else {
+        // The cookie doesn't exist
+        return false;
+    }
+}
+exports.checkSession = checkSession;
