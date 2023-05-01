@@ -62,7 +62,7 @@ function decryptDictionary(encryptedDict: any, shift: number) {
 }
 
 
-export function setSession(key: string, value: any) {
+export function setSession(key: any, value: any) {
   if (document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1")) {
     // The cookie exist
     let encryptedDict = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
@@ -71,16 +71,16 @@ export function setSession(key: string, value: any) {
     decryptedDict[key] = value;
 
     let newEncryptedDict = encryptDictionary(decryptedDict, 11);
-    document.cookie = "session=" + JSON.stringify(newEncryptedDict);
+    document.cookie = "session=" + JSON.stringify(newEncryptedDict) + "; path=/;";
   } else {
     // The cookie doesn't exist
     let dict = {};
     dict[key] = value;
     let encryptedDict = encryptDictionary(dict, 11);
-    document.cookie = "session=" + JSON.stringify(encryptedDict);
+    document.cookie = "session=" + JSON.stringify(encryptedDict) + "; path=/;";
   }
 }
-export function readSession(key: string) {
+export function readSession(key: any) {
   if (document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1")) {
     // The cookie exist
     let encryptedDict = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
@@ -93,7 +93,7 @@ export function readSession(key: string) {
   }
 }
 
-export function checkSession(key: string) {
+export function checkSession(key: any) {
   if (document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1")) {
     // The cookie exist
     let encryptedDict = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1"));

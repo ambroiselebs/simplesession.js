@@ -62,14 +62,14 @@ function setSession(key, value) {
         var decryptedDict = decryptDictionary(encryptedDict, 11);
         decryptedDict[key] = value;
         var newEncryptedDict = encryptDictionary(decryptedDict, 11);
-        document.cookie = "session=" + JSON.stringify(newEncryptedDict);
+        document.cookie = "session=" + JSON.stringify(newEncryptedDict) + "; path=/;";
     }
     else {
         // The cookie doesn't exist
         var dict = {};
         dict[key] = value;
         var encryptedDict = encryptDictionary(dict, 11);
-        document.cookie = "session=" + JSON.stringify(encryptedDict);
+        document.cookie = "session=" + JSON.stringify(encryptedDict) + "; path=/;";
     }
 }
 exports.setSession = setSession;
