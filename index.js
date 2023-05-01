@@ -73,7 +73,7 @@ function setSession(key, value) {
     }
 }
 exports.setSession = setSession;
-function readSession(key, value) {
+function readSession(key) {
     if (document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1")) {
         // The cookie exist
         var encryptedDict = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1"));

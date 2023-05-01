@@ -80,7 +80,7 @@ export function setSession(key: string, value: any) {
     document.cookie = "session=" + JSON.stringify(encryptedDict);
   }
 }
-export function readSession(key: string, value: any) {
+export function readSession(key: string) {
   if (document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1")) {
     // The cookie exist
     let encryptedDict = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
